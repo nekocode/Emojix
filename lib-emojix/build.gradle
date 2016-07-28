@@ -1,0 +1,20 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.nekocode'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        minSdkVersion 7
+        targetSdkVersion 23
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+}

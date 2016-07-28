@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tag_emojix_watcher" type="id"/>
+    <item name="tag_layout_listener" type="id"/>
+</resources>
