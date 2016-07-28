@@ -3,6 +3,8 @@
 
 Use **[apple style emojis](http://unicode.org/emoji/charts/full-emoji-list.html)** on your android application the easiest way.
 
+Something you need to know is that it will increase your apk size about 5 MB because it contains all emoji icon files.
+
 ### Preview
 ![preview](art/preview.png)
 
@@ -23,7 +25,7 @@ dependencies {
 
 ### Usage
 
-Just wrap the `Activity` Context:
+Just wrap the `Activity` Context, it will replace all the emoji characters with apple style icons in all `TextView`:
 
 ```java
 @Override
@@ -32,4 +34,10 @@ protected void attachBaseContext(Context newBase) {
 }
 ```
 
-And everything is OK now! Anyway, you can apply these code to your `BaseActivity` for implementing emoji to the whole application.
+Now, everything is OK! 
+
+Anyway, you can also apply these code to your `BaseActivity` for implementing emoji to the whole application.
+
+### Thanks
+
+Thanks to the [emojicon](https://github.com/rockerhieu/emojicon) and [Calligraphy](https://github.com/chrisjenx/Calligraphy) project. This project is based on them.
