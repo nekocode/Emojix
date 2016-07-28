@@ -1,6 +1,8 @@
 # Emojix
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0.html) [![Release](https://img.shields.io/github/release/nekocode/Emojix.svg?label=Jitpack)](https://jitpack.io/#nekocode/Emojix)
 
+Use **[apple style emojis](http://unicode.org/emoji/charts/full-emoji-list.html)** on your android application the easiest way.
+
 ### Preview
 ![preview](art/preview.png)
 
@@ -30,4 +32,4 @@ protected void attachBaseContext(Context newBase) {
 }
 ```
 
-And everything is OK now! Anyway, you can apply these code to your `BaseActivity` for implementing emojis to the whole application.
+And everything is OK now! Anyway, you can apply these code to your `BaseActivity` for implementing emoji to the whole application.
