@@ -25,7 +25,7 @@ dependencies {
 
 ### Usage
 
-Just wrap the `Activity` Context, it will let all the `TextView`s replace the emoji characters with apple style icons:
+Just wrap the `Activity` Context, it will let all the `TextView`s (or other views inherit from `TextView`) replace the emoji characters with apple style icons:
 
 ```java
 @Override
