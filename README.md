@@ -3,7 +3,7 @@
 
 Use **[apple style emojis](http://unicode.org/emoji/charts/full-emoji-list.html)** on your android application the easiest way.
 
-Something you need to know is that it will increase your apk size about 5 MB because it contains all emoji icon files.
+Something you need to know is that it will increase your apk size about 5 MB, because it contains all emoji icon files.
 
 ### Preview
 ![preview](art/preview.png)
@@ -40,4 +40,4 @@ Anyway, you can also apply these code to your `BaseActivity` for implementing em
 
 ### Thanks
 
-Thanks to the [emojicon](https://github.com/rockerhieu/emojicon) and [Calligraphy](https://github.com/chrisjenx/Calligraphy) project. This project is based on them.
+Thanks to the [emojicon](https://github.com/rockerhieu/emojicon) and [Calligraphy](https://github.com/chrisjenx/Calligraphy) projects. This project is based on them.
