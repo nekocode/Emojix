@@ -30,7 +30,7 @@ Just wrap the `Activity` Context, it will let all the `TextView`s replace the em
 ```java
 @Override
 protected void attachBaseContext(Context newBase) {
-    super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    super.attachBaseContext(Emojix.wrap(newBase));
 }
 ```
 
