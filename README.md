@@ -1,9 +1,9 @@
 # Emojix
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0.html) [![Release](https://img.shields.io/github/release/nekocode/Emojix.svg?label=Jitpack)](https://jitpack.io/#nekocode/Emojix)
 
-This library help using **[apple style emojis](http://unicode.org/emoji/charts/full-emoji-list.html)** on your android application the easiest way. Unlike [emojicon](https://github.com/rockerhieu/emojicon), this libriry is non-invasive. Just need to add only a little code to your project.
+This library help using **[apple style emojis](http://unicode.org/emoji/charts/full-emoji-list.html)** on your android application the easiest way. **Unlike [emojicon](https://github.com/rockerhieu/emojicon), this libriry is non-invasive. Just need to add only a little code to your project.**
 
-Something you need to know is that it will increase your apk size about 5 MB, because it contains all emoji icon files.
+Another thing you need to know is that this library will increase your apk size about 5 MB, because it contains all emoji icon files.
 
 ### Preview
 ![preview](art/preview.png)
@@ -25,7 +25,7 @@ dependencies {
 
 ### Usage
 
-Just wrap the `Activity` Context, it will replace all the emoji characters with apple style icons in all `TextView`:
+Just wrap the `Activity` Context, it will let all the `TextView`s replace the emoji characters with apple style icons:
 
 ```java
 @Override
@@ -34,9 +34,9 @@ protected void attachBaseContext(Context newBase) {
 }
 ```
 
-Now, everything is OK! 
+Now, everything is OK!
 
-Anyway, you can also apply these code to your `BaseActivity` for implementing emoji to the whole application.
+Anyway, for implementing emoji to the whole application you can add these code to your `BaseActivity`.
 
 ### Thanks
 
