@@ -43,16 +43,18 @@ class EmojixLayoutInflater extends LayoutInflater {
         setUpLayoutFactories(false);
     }
 
+    protected EmojixLayoutInflater(LayoutInflater original, Context newContext, final boolean cloned) {
+        super(original, newContext);
+        setUpLayoutFactories(cloned);
+    }
+
     private void setUpLayoutFactories(boolean cloned) {
         if (cloned) return;
-        // If we are HC+ we get and set Factory2 otherwise we just wrap Factory1
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (getFactory2() != null && !(getFactory2() instanceof WrapperFactory2)) {
-                // Sets both Factory/Factory2
-                setFactory2(getFactory2());
-            }
+
+        if (getFactory2() != null && !(getFactory2() instanceof WrapperFactory2)) {
+            setFactory2(getFactory2());
         }
-        // We can do this as setFactory2 is used for both methods.
+
         if (getFactory() != null && !(getFactory() instanceof WrapperFactory)) {
             setFactory(getFactory());
         }
@@ -60,7 +62,7 @@ class EmojixLayoutInflater extends LayoutInflater {
 
     @Override
     public LayoutInflater cloneInContext(Context newContext) {
-        return new EmojixLayoutInflater(this, newContext);
+        return new EmojixLayoutInflater(this, newContext, true);
     }
 
     @Override
@@ -138,42 +140,10 @@ class EmojixLayoutInflater extends LayoutInflater {
         return view;
     }
 
-
-    private static class WrapperFactory implements Factory {
-        private final Factory factory;
-        private final EmojixLayoutInflater inflater;
-
-        public WrapperFactory(Factory factory, EmojixLayoutInflater inflater) {
-            this.factory = factory;
-            this.inflater = inflater;
-        }
-
-        @Override
-        public View onCreateView(String name, Context context, AttributeSet attrs) {
-            return inflater.onViewCreated(
-                    factory.onCreateView(name, context, attrs),
-                    context, attrs);
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private static class WrapperFactory2 implements Factory2 {
-        protected final Factory2 factory2;
-        protected final EmojixLayoutInflater inflater;
+    private static class BaseFactory {
         static private Field constructorArgs = null;
 
-        public WrapperFactory2(Factory2 factory2, EmojixLayoutInflater inflater) {
-            this.factory2 = factory2;
-            this.inflater = inflater;
-        }
-
-        @Override
-        public View onCreateView(String name, Context context, AttributeSet attrs) {
-            return inflater.onViewCreated(factory2.onCreateView(name, context, attrs), context, attrs);
-        }
-
-        @Override
-        public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
+        protected View createView(EmojixLayoutInflater inflater, String name, Context context, AttributeSet attrs) {
             View view = null;
 
             // Try to create view manually
@@ -216,6 +186,50 @@ class EmojixLayoutInflater extends LayoutInflater {
                     }
                 }
             }
+
+            return view;
+        }
+    }
+
+    private static class WrapperFactory extends BaseFactory implements Factory {
+        private final Factory factory;
+        private final EmojixLayoutInflater inflater;
+
+        public WrapperFactory(Factory factory, EmojixLayoutInflater inflater) {
+            this.factory = factory;
+            this.inflater = inflater;
+        }
+
+        @Override
+        public View onCreateView(String name, Context context, AttributeSet attrs) {
+            View view = createView(inflater, name, context, attrs);
+
+            if (view == null) {
+                view = factory.onCreateView(name, context, attrs);
+            }
+
+            return inflater.onViewCreated(view, context, attrs);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private static class WrapperFactory2 extends BaseFactory implements Factory2 {
+        protected final Factory2 factory2;
+        protected final EmojixLayoutInflater inflater;
+
+        public WrapperFactory2(Factory2 factory2, EmojixLayoutInflater inflater) {
+            this.factory2 = factory2;
+            this.inflater = inflater;
+        }
+
+        @Override
+        public View onCreateView(String name, Context context, AttributeSet attrs) {
+            return inflater.onViewCreated(factory2.onCreateView(name, context, attrs), context, attrs);
+        }
+
+        @Override
+        public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
+            View view = createView(inflater, name, context, attrs);
 
             if (view == null) {
                 view = factory2.onCreateView(name, context, attrs);
