@@ -34,9 +34,13 @@ protected void attachBaseContext(Context newBase) {
 }
 ```
 
-Now, everything is OK!
+Now, everything is OK! Anyway, for implementing emoji to the whole application you can add these code to your `BaseActivity`.
 
-Anyway, for implementing emoji to the whole application you can add these code to your `BaseActivity`.
+Note that if it is not working with any views, you can wrap the view manually:
+
+```java
+Emojix.wrapView(view);
+```
 
 ### Thanks
 

@@ -22,7 +22,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -108,34 +107,7 @@ class EmojixLayoutInflater extends LayoutInflater {
 //        boolean useEmojix = a.getBoolean(R.styleable.Emojix_emoji, true);
 //        a.recycle();
 
-        if (view instanceof TextView) {
-            TextView textView = (TextView) view;
-            if (textView.getTag(R.id.tag_emojix_watcher) == null) {
-                EmojixTextWatcher watcher = new EmojixTextWatcher(textView);
-                textView.addTextChangedListener(watcher);
-
-                textView.setTag(R.id.tag_emojix_watcher, watcher);
-            }
-
-        } else if (view instanceof ViewGroup) {
-            if (view.getTag(R.id.tag_layout_listener) == null) {
-                View.OnLayoutChangeListener listener = new View.OnLayoutChangeListener() {
-                    @Override
-                    public void onLayoutChange(View v, int left, int top, int right, int bottom,
-                                               int oldLeft, int oldTop, int oldRight, int oldBottom) {
-
-                        ViewGroup parentView = (ViewGroup) v;
-                        int len = parentView.getChildCount();
-                        for (int i = 0; i < len; i ++) {
-                            onViewCreated(parentView.getChildAt(i), context, attrs);
-                        }
-                    }
-                };
-                view.addOnLayoutChangeListener(listener);
-
-                view.setTag(R.id.tag_layout_listener, listener);
-            }
-        }
+        Emojix.wrapView(view);
 
         return view;
     }

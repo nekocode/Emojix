@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cn.nekocode.emojix.Emojix;
@@ -18,20 +19,26 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle("Emojix Example \uD83C\uDF1A");
 
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         TextView textView = (TextView) findViewById(R.id.textView);
         CustomText customText = (CustomText) findViewById(R.id.textView2);
         EditText editText = (EditText) findViewById(R.id.editText);
         Button button = (Button) findViewById(R.id.button);
 
+        assert linearLayout != null;
         assert textView != null;
         assert customText != null;
         assert editText != null;
         assert button != null;
 
         textView.setText("TextView: Hello World!\uD83D\uDC7E");
-        customText.setText("CustomTextView: 白洞, 白色的明天在等着我们!\uD83C\uDF8F");
-        editText.setText("EditText: \uD83D\uDC8F\uD83D\uDC49\uD83D\uDC47\uD83D\uDC4A\uD83D\uDE20\uD83D\uDCA9");
+        customText.setText("CustomTextView: 上吧, 正义的伙伴!\uD83C\uDF8F");
+        editText.setText("EditText: \uD83D\uDE37\uD83D\uDE02\uD83D\uDE04✨\uD83D\uDCA4\uD83D\uDD25");
         button.setText("Button: \uD83D\uDE80");
+
+        TextView textView2 = new TextView(this);
+        textView2.setText("Create TextView programmatically\uD83D\uDC7B");
+        linearLayout.addView(textView2);
     }
 
     @Override
